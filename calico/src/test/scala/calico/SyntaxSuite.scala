@@ -57,7 +57,6 @@ class SyntaxSuite:
     val email: IO[String] = fileEl.typedValue["email"]
     (files, checked, isRadio, num, rng, str, email)
 
-  // verify typedValue integrates with the onChange event stream DSL
   def typedInputWithOnChange =
     input.withSelf { self =>
       (
