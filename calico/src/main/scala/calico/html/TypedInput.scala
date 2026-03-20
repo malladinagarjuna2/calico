@@ -22,12 +22,12 @@ import fs2.dom.HtmlInputElement
 import org.scalajs.dom
 
 type InputValue[T <: String] <: Any = T match
-  case "file"            => dom.FileList
-  case "checkbox"        => Boolean
-  case "radio"           => Boolean
-  case "number"          => Double
-  case "range"           => Double
-  case String            => String
+  case "file" => dom.FileList
+  case "checkbox" => Boolean
+  case "radio" => Boolean
+  case "number" => Double
+  case "range" => Double
+  case String => String
 
 trait InputReader[F[_], T <: String]:
   type Out
@@ -66,4 +66,3 @@ object InputReader:
     type Out = String
     def read(el: HtmlInputElement[F]): F[String] =
       F.delay(el.asInstanceOf[dom.HTMLInputElement].value)
-
