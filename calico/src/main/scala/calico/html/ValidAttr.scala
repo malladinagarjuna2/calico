@@ -15,22 +15,12 @@
  */
 
 package calico.html
-
-/**
- * Evidence that an attribute identified by phantom type `A` is valid on element type `E`.
- * Contravariant in `E` so that if an attribute is valid on `HtmlElement`,
- * it is also valid on all subtypes (e.g. `HtmlInputElement`).
- */
 trait ValidAttr[A, -E]
 
 object ValidAttr:
   private val _instance: ValidAttr[Any, Any] = new ValidAttr[Any, Any] {}
   inline def instance[A, E]: ValidAttr[A, E] = _instance.asInstanceOf[ValidAttr[A, E]]
 
-/**
- * Evidence that a property identified by phantom type `A` is valid on element type `E`.
- * Contravariant in `E` for the same reason as `ValidAttr`.
- */
 trait ValidProp[A, -E]
 
 object ValidProp:

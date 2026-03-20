@@ -169,7 +169,6 @@ private[codegen] class CalicoGenerator(srcManaged: File)
 
     for (d <- defs) {
       val codecExpr = transformCodecName(d.codec)
-      // domName has aria- stripped already by transformAttrDomName in DomDefsGenerator
       val suffix = d.domName
       val scalaName = d.scalaName
       val valueType = d.scalaValueType
@@ -230,7 +229,6 @@ private[codegen] class CalicoGenerator(srcManaged: File)
     standardTraitCommentLines.foreach(c => sb.append(s"// $c\n"))
     sb.append(s"\nprivate trait GeneratedValidInstances[F[_]](using Async[F]):\n\n")
 
-    // ValidAttr instances for HTML attributes
     for (d <- htmlAttrDefs) {
       val domName = d.domName
       val safeName = sanitizeName(d.scalaName)
@@ -245,7 +243,7 @@ private[codegen] class CalicoGenerator(srcManaged: File)
     sb.append("\n")
 
     for (d <- ariaAttrDefs) {
-      val suffix = d.domName // already has aria- stripped
+      val suffix = d.domName
       val fullName = "aria-" + suffix
       val safeName = sanitizeName(d.scalaName)
       sb.append(
